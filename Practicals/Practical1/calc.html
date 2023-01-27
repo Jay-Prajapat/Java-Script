@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Scientific Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="" href="/css/style.css">
+    <script src="/js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="screen">
+            <div class="previous" data-previous-operand></div>
+            <div class="current" data-current-operand>0</div>
+        </div>
+        <div class="container">
+            <div class="row-memory-functions">
+                <div class="col">
+                    <button>DGE</button>
+                </div>
+                <div>
+                    <button class="col">F-E</button>
+                </div>
+            </div>
+            <div class="row-memory-functions">
+                <div class="col">
+                    <button>MC</button>
+                </div>
+                <div class="col">
+                    <button>MR</button>
+                </div>
+                <div class="col">
+                    <button>M+</button>
+                </div>
+                <div class="col">
+                    <button>M-</button>
+                </div>
+                <div class="col">
+                    <button>MS</button>
+                </div>
+            </div>
+            <div class="functions">
+                <div class="col">
+                    <button><img src="https://img.icons8.com/ios-glyphs/30/null/trigonometry.png "
+                         />
+                        
+                    <span style="font-size: small;">Trigonometry</span></button>
+                </div>
+                <div class="col">
+                    <button><img src="https://img.icons8.com/ios-glyphs/30/null/frequency-f.png" />
+                        <span style="font-size: small;">Function</span></button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>2<sup>nd</sup></button>
+                </div>
+                <div class="col">
+                    <button>&#960;</button>
+
+                </div>
+                <div class="col">
+                    <button>e</button>
+
+                </div>
+                <div class="col">
+                    <button data-all-clear>C</button>
+
+                </div>
+                <div class="col">
+                    <button data-delete><i class="fa-solid fa-delete-left"></i></button>
+
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>x<sup>2</sup></button>
+                </div>
+                <div class="col">
+                    <button>1/<sub>x</sub></button>
+                </div>
+                <div class="col">
+                    <button>|x|</button>
+                </div>
+                <div class="col">
+                    <button>exp</button>
+                </div>
+                <div class="col">
+                    <button>mod</button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button data-operation><i class="fa-solid fa-square-root-variable"></i></button>
+                </div>
+                <div class="col">
+                    <button data-operation>(</button>
+                </div>
+                <div class="col">
+                    <button data-operation>)</button>
+                </div>
+                <div class="col">
+                    <button data-operation>n!</button>
+                </div>
+                <div class="col">
+                    <button data-operation><i class="fa-solid fa-divide"></i></button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>x<sup>y</sup></button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>7</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>8</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>9</button>
+                </div>
+                <div class="col">
+                    <button data-operation><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>10<sup>x</sup></button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>4</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>5</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>6</button>
+                </div>
+                <div class="col">
+                    <button data-operation><i class="fa-solid fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>log</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>1</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>2</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>3</button>
+                </div>
+                <div class="col">
+                    <button><i class="fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col">
+                    <button>ln</button>
+                </div>
+                <div class="col">
+                    <button class="number"><sup>+</sup>/-</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>0</button>
+                </div>
+                <div class="col">
+                    <button class="number" data-number>.</button>
+                </div>
+                <div class="col">
+                    <button data-equals><i class="fa-regular fa-equals"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
