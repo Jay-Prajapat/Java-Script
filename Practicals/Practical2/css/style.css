@@ -1,6 +1,116 @@
-body{
-   background-image: url(/images/image3.jpg);
-    /* background-color: rgb(145, 189, 228); */
-    background-size: cover;
-   
+.main {
+    background-color: #f2f5f7;  
 }
+.content-home {
+  background-image: url(/images/image7.jpg);
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  height: 100vh;
+  position: relative;
+}
+
+.content{
+    background:rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+}
+.welcome-content{
+    position: absolute;
+    color: white;
+    text-align: center;
+    top: 70%;
+    left: 30%;
+
+}
+.content-aboutus {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+}
+
+
+
+p {
+  color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 500px;
+  text-align: justify;
+}
+
+.content-images {
+  padding: 30px;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  padding-top: 4rem;
+}
+.content-images img {
+  height: 800px;
+
+}
+
+.content-head {
+  text-align: center;
+}
+
+.content-contact {
+  background-color: #f2f5f7;
+}
+.address {
+  padding-left: 5%;
+}
+.inner-contect {
+  color: #d94948;
+}
+.follow-us {
+  padding-left: 5%;
+  margin-top: 20px;
+}
+.follow-us span {
+  padding-right: 10px;
+  font-size: 30px;
+}
+.location {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.map {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  height: 600px;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+ul,li a{
+    font-size: 1.5em;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.cursorPointer {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    transition: 0.1s;
+    transform: translate(-50%,50%);
+    pointer-events: none;
+    mix-blend-mode:difference;
+}
+
+ul li:hover ~ .cursorPointer{
+    transform: scale(4);
+}
+
