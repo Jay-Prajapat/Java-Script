@@ -1,5 +1,5 @@
 .main {
-    background-color: #f2f5f7;  
+  background-color: #f2f5f7;
 }
 .content-home {
   background-image: url(/images/image7.jpg);
@@ -9,18 +9,17 @@
   position: relative;
 }
 
-.content{
-    background:rgba(0, 0, 0, 0.6);
-    height: 100%;
-    width: 100%;
+.content {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
 }
-.welcome-content{
-    position: absolute;
-    color: white;
-    text-align: center;
-    top: 70%;
-    left: 30%;
-
+.welcome-content {
+  position: absolute;
+  color: white;
+  text-align: center;
+  top: 70%;
+  left: 30%;
 }
 .content-aboutus {
   text-align: center;
@@ -29,8 +28,6 @@
   flex-direction: column;
   padding-top: 4rem;
 }
-
-
 
 p {
   color: gray;
@@ -48,7 +45,6 @@ p {
 }
 .content-images img {
   height: 800px;
-
 }
 
 .content-head {
@@ -91,26 +87,35 @@ p {
   width: 100%;
   z-index: 9999;
 }
-ul,li a{
-    font-size: 1.5em;
-    text-decoration: none;
-    color: white;
-    transition: 0.2s;
+ul,
+li a {
+  font-size: 1.5em;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
 }
 
 .cursorPointer {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    transition: 0.1s;
-    transform: translate(-50%,50%);
-    pointer-events: none;
-    mix-blend-mode:difference;
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transition: 0.1s;
+  transform: translate(-50%, 50%);
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
 
-ul li:hover ~ .cursorPointer{
-    transform: scale(4);
+ul li:hover ~ .cursorPointer {
+  transform: scale(4);
 }
-
+.carousel {
+  padding: 50px;
+  align-items: flex-end;
+}
+.carousel-inner {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
