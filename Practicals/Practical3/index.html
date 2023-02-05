@@ -1,86 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <script src="js/script.js" defer></script>
-    <title>Product Management System</title>
-  </head>
-  <body>
-    <div class="container">
-      <h2>Product Management System</h2>
-      <form>
-        <div class="form-group">
-          <label for="prodId">Product ID:</label>
-          <input type="text" class="form-control" id="prodId" />
-        </div>
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" />
-        </div>
-        <div class="form-group">
-          <label for="image">Image:</label>
-          <input type="file" class="form-control" id="image" />
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <input type="number" class="form-control" id="price" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea class="form-control" rows="5" id="description"></textarea>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary"
-          id="add"
-          onclick="onSubmit()"
-        >
-          Add
-        </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          id="update"
-          style="display: none"
-        >
-          Update
-        </button>
-        <br />
-        <span id="error"></span>
-      </form>
-    </div>
-    <div class="main-filter">
-      <div class="filter">
-        <span>Sort By:</span>
-        <div id="sortByName">
-          <button onclick="sortByNameAsc()">
-            <i class="fa">&#xf063;</i> Product name
-          </button>
-        </div>
-        <div id="sortByprice">
-          <button onclick="sortByPriceAsc()">
-            <i class="fa">&#xf063;</i> Product Price
-          </button>
-        </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="js/script.js" defer></script>
+  <title>Product Management System</title>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Product Management System</h2>
+    <form>
+      <div class="form-group">
+        <label for="prodId">Product ID:</label>
+        <input type="text" class="form-control" id="prodId" />
+        <label for="Id" id="pId" style="display: none;"></label>
       </div>
-      <div class="search-container">
-        <input type="text" placeholder="Search.." name="search" />
-        <button type="submit"><i class="fa fa-search"></i></button>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" />
+      </div>
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" class="form-control" id="image" />
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" rows="5" id="description"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" id="add" onclick="onSubmit()">
+        Add
+      </button>
+      <button type="button" class="btn btn-success" id="update" style="display: none">
+        Update
+      </button>
+      <br />
+      <span id="error"></span>
+    </form>
+  </div>
+  <div class="main-filter">
+    <div class="filter">
+      <span>Sort By:</span>
+      <div id="sortByName">
+        <button onclick="sortByNameAsc()">
+          <i class="fa">&#xf063;</i> Product name
+        </button>
+      </div>
+      <div id="sortByprice">
+        <button onclick="sortByPriceAsc()">
+          <i class="fa">&#xf063;</i> Product Price
+        </button>
       </div>
     </div>
-   
-    <div class="row" id="insertData"></div>
-  </body>
+    <div class="search-container">
+      <input type="text" placeholder="Search.." name="search" id="search" />
+      <button type="submit" onclick="searchById()"><i class="fa fa-search" ></i></button>
+    </div>
+  </div>
+  <div class="row" id="insertData"></div>
+</body>
+
 </html>
