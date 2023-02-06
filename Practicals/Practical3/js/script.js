@@ -1,9 +1,7 @@
 function onSubmit() {
-
   let prodData = JSON.parse(localStorage.getItem("prodData")) || [];
 
   if (validateData()) {
-
     const fileEl = document.getElementById("image");
 
     const fr = new FileReader();
@@ -20,40 +18,60 @@ function onSubmit() {
 
       localStorage.setItem("prodData", JSON.stringify(prodData));
     });
-
-  } else {
-    console.log("no id err1");
-    error.textContent = "Please enter a product id.";
   }
 }
 
-function validID() {
-  
+function validID(id) {
+  let prodData = JSON.parse(localStorage.getItem("prodData"));
+
+  let isValidate = true;
+  prodData.forEach((item) => {
+    if (item.prodId == id) {
+      isValidate = false;
+    }
+  });
+  return isValidate;
 }
 
 function validateData() {
-  let name = document.getElementById('name').value;
-  let price = document.getElementById('price').value;
-  let id = document.getElementById('prodId').value;
+  let name = document.getElementById("name").value;
+  let price = document.getElementById("price").value;
+  let id = document.getElementById("prodId").value;
 
   if (id == "") {
-    document.getElementById('pId').style.display = 'block';
-    document.getElementById('pId').innerHTML = "Product Id is required !!";
+    document.getElementById("pId").style.display = "block";
+    document.getElementById("pId").innerHTML = "Product Id is required !!";
     return false;
   }
-  if(validID(id)){
-
+  if (!validID(id)) {
+    document.getElementById("pId").style.display = "block";
+    document.getElementById("pId").innerHTML = "Product Id is required !!";
+    return false;
   }
+  if (name == "") {
+    document.getElementById("pName").style.display = "block";
+    document.getElementById("pName").innerHTML = "Product name is required !!";
+    return false;
+  }
+  if (price == "") {
+    document.getElementById("pPrice").style.display = "block";
+    document.getElementById("pPrice").innerHTML =
+      "Product price is required !!";
+    return false;
+  }
+
+  return true;
 }
 
-
-
 function searchById() {
-  let id = document.getElementById('search');
+  let id = document.getElementById("search");
   let prodData = JSON.parse(localStorage.getItem("prodData")) || [];
   let html = ``;
   prodData.forEach((element, index) => {
-    if (element.prodId == id.value || element.name.toLowerCase().includes(id.value.toLowerCase())) {
+    if (
+      element.prodId == id.value ||
+      element.name.toLowerCase().includes(id.value.toLowerCase())
+    ) {
       console.log(element.prodId);
       html += `
         <div class="column">
@@ -73,16 +91,17 @@ function searchById() {
         </div>
         `;
       document.querySelector("#insertData").innerHTML = html;
-
     }
   });
-  id.value = '';
+  id.value = "";
 }
 
 function sortByNameAsc() {
   let prodData = JSON.parse(localStorage.getItem("prodData"));
 
-  document.getElementById('sortByName').innerHTML = `<button onclick="sortByNameDes()"><i class="fa fa-arrow-up"></i> Product name</button>`;
+  document.getElementById(
+    "sortByName"
+  ).innerHTML = `<button onclick="sortByNameDes()"><i class="fa fa-arrow-up"></i> Product name</button>`;
 
   prodData.sort((a, b) => {
     let str1 = a.name.toLowerCase();
@@ -95,16 +114,18 @@ function sortByNameAsc() {
       return 1;
     }
     return 0;
-  })
+  });
 
-  localStorage.setItem('prodData', JSON.stringify(prodData));
+  localStorage.setItem("prodData", JSON.stringify(prodData));
   showData();
 }
 
 function sortByNameDes() {
   let prodData = JSON.parse(localStorage.getItem("prodData"));
 
-  document.getElementById('sortByName').innerHTML = `<button onclick="sortByNameAsc()"><i class="fa">&#xf063;</i> Product name</button>`;
+  document.getElementById(
+    "sortByName"
+  ).innerHTML = `<button onclick="sortByNameAsc()"><i class="fa">&#xf063;</i> Product name</button>`;
 
   prodData.sort((a, b) => {
     let str1 = a.name.toLowerCase();
@@ -117,39 +138,43 @@ function sortByNameDes() {
       return -1;
     }
     return 0;
-  })
+  });
 
-  localStorage.setItem('prodData', JSON.stringify(prodData));
+  localStorage.setItem("prodData", JSON.stringify(prodData));
   showData();
 }
 
 function sortByPriceAsc() {
   let prodData = JSON.parse(localStorage.getItem("prodData"));
 
-  document.getElementById('sortByprice').innerHTML = `<button onclick="sortByPriceDes()"><i class="fa fa-arrow-up"></i> Product Price</button>`;
+  document.getElementById(
+    "sortByprice"
+  ).innerHTML = `<button onclick="sortByPriceDes()"><i class="fa fa-arrow-up"></i> Product Price</button>`;
 
   prodData.sort((a, b) => {
     let str1 = a.price;
     let str2 = b.price;
     return str1 - str2;
-  })
+  });
 
-  localStorage.setItem('prodData', JSON.stringify(prodData));
+  localStorage.setItem("prodData", JSON.stringify(prodData));
   showData();
 }
 
 function sortByPriceDes() {
   let prodData = JSON.parse(localStorage.getItem("prodData"));
 
-  document.getElementById('sortByprice').innerHTML = `<button onclick="sortByPriceAsc()"><i class="fa">&#xf063;</i> Product Price</button>`;
+  document.getElementById(
+    "sortByprice"
+  ).innerHTML = `<button onclick="sortByPriceAsc()"><i class="fa">&#xf063;</i> Product Price</button>`;
 
   prodData.sort((a, b) => {
     let str1 = a.price;
     let str2 = b.price;
     return str2 - str1;
-  })
+  });
 
-  localStorage.setItem('prodData', JSON.stringify(prodData));
+  localStorage.setItem("prodData", JSON.stringify(prodData));
   showData();
 }
 
@@ -247,3 +272,6 @@ function edit(index) {
     document.getElementById("add").style.display = "block";
   };
 }
+
+
+

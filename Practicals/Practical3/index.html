@@ -19,12 +19,13 @@
     <form>
       <div class="form-group">
         <label for="prodId">Product ID:</label>
-        <input type="text" class="form-control" id="prodId" />
-        <label for="Id" id="pId" style="display: none;"></label>
+        <input type="text" class="form-control" id="prodId" required />
+        <label for="Id" id="pId" style="display: none;" class="error"></label>
       </div>
       <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" class="form-control" id="name" />
+        <input type="text" class="form-control" id="name"required />
+        <label for="pName" id="pName" style="display: none;" class="error"></label>
       </div>
       <div class="form-group">
         <label for="image">Image:</label>
@@ -32,11 +33,12 @@
       </div>
       <div class="form-group">
         <label for="price">Price:</label>
-        <input type="number" class="form-control" id="price" />
+        <input type="number" class="form-control" id="price" required/>
+        <label for="pPrice" id="pPrice" style="display: none;" class="error"></label>
       </div>
       <div class="form-group">
         <label for="description">Description:</label>
-        <textarea class="form-control" rows="5" id="description"></textarea>
+        <textarea class="form-control" rows="5" id="description" maxlength="60"></textarea>
       </div>
       <button type="submit" class="btn btn-primary" id="add" onclick="onSubmit()">
         Add
@@ -44,8 +46,6 @@
       <button type="button" class="btn btn-success" id="update" style="display: none">
         Update
       </button>
-      <br />
-      <span id="error"></span>
     </form>
   </div>
   <div class="main-filter">
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Search.." name="search" id="search" />
+      <input type="text" placeholder="Search by id or name..." name="search" id="search" />
       <button type="submit" onclick="searchById()"><i class="fa fa-search" ></i></button>
     </div>
   </div>
