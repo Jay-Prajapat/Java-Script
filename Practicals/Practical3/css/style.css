@@ -41,6 +41,10 @@ img {
   color: rgb(112, 112, 112);
 }
 
+#update{
+  display: none;
+}
+
 .price {
   color: green;
 }
@@ -51,6 +55,7 @@ img {
 
 .error {
   color: red;
+  display: none;
 }
 
 .main-filter {
