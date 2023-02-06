@@ -1,13 +1,21 @@
 function onSubmit() {
-  let prodData = JSON.parse(localStorage.getItem("prodData")) || [];
+   
+  var prodData ;
 
-  if (validateData()) {
+  if(localStorage.getItem("prodData") == null)
+  {
+    prodData =[];
+  }
+  else{
+    prodData = JSON.parse(localStorage.getItem("prodData"));
+  }
+  if(validateData()){
     const fileEl = document.getElementById("image");
-
+ 
     const fr = new FileReader();
     fr.readAsDataURL(fileEl.files[0]);
 
-    fr.addEventListener("load", () => {
+    fr.addEventListener('load', () => {
       prodData.push({
         prodId: document.getElementById("prodId").value,
         name: document.getElementById("name").value,
@@ -21,17 +29,6 @@ function onSubmit() {
   }
 }
 
-function validID(id) {
-  let prodData = JSON.parse(localStorage.getItem("prodData"));
-
-  let isValidate = true;
-  prodData.forEach((item) => {
-    if (item.prodId == id) {
-      isValidate = false;
-    }
-  });
-  return isValidate;
-}
 
 function validateData() {
   let name = document.getElementById("name").value;
@@ -43,11 +40,6 @@ function validateData() {
     document.getElementById("pId").innerHTML = "Product Id is required !!";
     return false;
   }
-  if (!validID(id)) {
-    document.getElementById("pId").style.display = "block";
-    document.getElementById("pId").innerHTML = "Product Id is required !!";
-    return false;
-  }
   if (name == "") {
     document.getElementById("pName").style.display = "block";
     document.getElementById("pName").innerHTML = "Product name is required !!";
@@ -55,8 +47,7 @@ function validateData() {
   }
   if (price == "") {
     document.getElementById("pPrice").style.display = "block";
-    document.getElementById("pPrice").innerHTML =
-      "Product price is required !!";
+    document.getElementById("pPrice").innerHTML = "Product price is required !!";
     return false;
   }
 
@@ -65,7 +56,7 @@ function validateData() {
 
 function searchById() {
   let id = document.getElementById("search");
-  let prodData = JSON.parse(localStorage.getItem("prodData")) || [];
+  let prodData = JSON.parse(localStorage.getItem("prodData"))  ;
   let html = ``;
   prodData.forEach((element, index) => {
     if (
@@ -196,7 +187,16 @@ function validateID(data) {
 function showData() {
   let html = ``;
   console.log("show data called");
-  let prodData = JSON.parse(localStorage.getItem("prodData"));
+  var prodData ;
+
+  if(localStorage.getItem("prodData") == null)
+  {
+    prodData =[];
+  }
+  else{
+    prodData = JSON.parse(localStorage.getItem("prodData"));
+  }
+   
   prodData.forEach((item, index) => {
     html += `
         <div class="column">
