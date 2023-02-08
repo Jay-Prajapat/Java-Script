@@ -17,7 +17,6 @@ for (item of btn) {
 for (item of opr) {
   item.addEventListener("click", (e) => {
     oprText = e.target.innerText;
-    console.log(oprText);
     if (oprText == "x") {
       oprText = "*";
     }
@@ -61,8 +60,7 @@ function compute() {
       ans.innerHTML.indexOf("t") + 1,
       ans.innerHTML.length + 1
     );
-    console.log(num1);
-    console.log(num2);
+
     let x = parseFloat(num1);
     let y = parseFloat(num2);
     ans.innerHTML = Math.pow(x, 1 / y);
@@ -84,7 +82,6 @@ function compute() {
 }
 
 function deleteChar() {
-  console.log("delete");
   screen.innerHTML = screen.innerHTML.toString().slice(0, -1);
 }
 
@@ -221,7 +218,6 @@ function fe() {
     parseFloat(screen.innerHTML) / Math.pow(10, length - 1).toString() +
     ".e+" +
     `${length - 1}`;
-  console.log();
 }
 
 function memoryAdd() {
@@ -241,7 +237,6 @@ function memoryAdd() {
     } else return;
   }
   screen.innerHTML = "";
-  console.log(memory);
 }
 
 function memoryMinus() {
@@ -261,12 +256,11 @@ function memoryMinus() {
     } else return;
   }
   screen.innerHTML = "";
-  console.log(memory);
 }
 
 function memoryStore() {
   memory.push(parseFloat(screen.innerHTML));
-  console.log(memory);
+
   screen.innerHTML = "";
 }
 
@@ -276,7 +270,6 @@ function memoryRead() {
 
 function memoryClear() {
   memory = [];
-  console.log(memory);
 }
 
 let flag = true;
