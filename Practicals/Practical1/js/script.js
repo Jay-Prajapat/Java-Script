@@ -145,6 +145,10 @@ function exponential() {
   screen.innerHTML = screen.innerHTML * Math.pow(10, screen.innerHTML);
 }
 
+function pi() {
+  screen.innerHTML = Math.PI;
+}
+
 function EulersNumber() {
   screen.innerHTML = Math.exp(1);
 }
