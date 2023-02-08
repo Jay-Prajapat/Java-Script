@@ -1,21 +1,18 @@
 function onSubmit() {
-   
-  var prodData ;
+  var prodData;
 
-  if(localStorage.getItem("prodData") == null)
-  {
-    prodData =[];
-  }
-  else{
+  if (localStorage.getItem("prodData") == null) {
+    prodData = [];
+  } else {
     prodData = JSON.parse(localStorage.getItem("prodData"));
   }
-  if(validateData()){
+  if (validateData()) {
     const fileEl = document.getElementById("image");
- 
+
     const fr = new FileReader();
     fr.readAsDataURL(fileEl.files[0]);
 
-    fr.addEventListener('load', () => {
+    fr.addEventListener("load", () => {
       prodData.push({
         prodId: document.getElementById("prodId").value,
         name: document.getElementById("name").value,
@@ -29,25 +26,48 @@ function onSubmit() {
   }
 }
 
-
 function validateData() {
   let name = document.getElementById("name").value;
   let price = document.getElementById("price").value;
   let id = document.getElementById("prodId").value;
-
+  let str = document.getElementById("prodId").value;
+  let len = str.length;
+  
   if (id == "") {
     document.getElementById("pId").style.display = "block";
     document.getElementById("pId").innerHTML = "Product Id is required !!";
+    document.getElementById("prodId").style.border = "solid red";
     return false;
   }
+  if (len != 8) {
+    document.getElementById("pId").style.display = "block";
+    document.getElementById("pId").innerHTML =
+      "Product Id is exactly 8 character.";
+    document.getElementById("prodId").style.border = "solid red";
+    return false;
+  }
+  if (isNaN(str)) {
+    document.getElementById("pId").style.display = "block";
+    document.getElementById("pId").innerHTML =
+      "Product Id should contain only number.";
+    document.getElementById("prodId").style.border = "solid red";
+    return false;
+  }
+ 
+
   if (name == "") {
     document.getElementById("pName").style.display = "block";
     document.getElementById("pName").innerHTML = "Product name is required !!";
+    document.getElementById("name").style.border = "solid red";
+
     return false;
   }
   if (price == "") {
     document.getElementById("pPrice").style.display = "block";
-    document.getElementById("pPrice").innerHTML = "Product price is required !!";
+    document.getElementById("pPrice").innerHTML =
+      "Product price is required !!";
+    document.getElementById("price").style.border = "solid red";
+
     return false;
   }
 
@@ -56,14 +76,13 @@ function validateData() {
 
 function searchById() {
   let id = document.getElementById("search");
-  let prodData = JSON.parse(localStorage.getItem("prodData"))  ;
+  let prodData = JSON.parse(localStorage.getItem("prodData"));
   let html = ``;
   prodData.forEach((element, index) => {
     if (
       element.prodId == id.value ||
       element.name.toLowerCase().includes(id.value.toLowerCase())
     ) {
-      console.log(element.prodId);
       html += `
         <div class="column">
           <div class="card">
@@ -186,17 +205,15 @@ function validateID(data) {
 
 function showData() {
   let html = ``;
-  console.log("show data called");
-  var prodData ;
 
-  if(localStorage.getItem("prodData") == null)
-  {
-    prodData =[];
-  }
-  else{
+  var prodData;
+
+  if (localStorage.getItem("prodData") == null) {
+    prodData = [];
+  } else {
     prodData = JSON.parse(localStorage.getItem("prodData"));
   }
-   
+
   prodData.forEach((item, index) => {
     html += `
         <div class="column">
@@ -272,6 +289,3 @@ function edit(index) {
     document.getElementById("add").style.display = "block";
   };
 }
-
-
-
