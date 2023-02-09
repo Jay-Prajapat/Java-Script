@@ -20,10 +20,10 @@ for (item of opr) {
     if (oprText == "x") {
       oprText = "*";
     }
-    if (oprText == "÷") {
+    else if (oprText == "÷") {
       oprText = "/";
     }
-    if (oprText == "mod") {
+    else if (oprText == "mod") {
       oprText = "%";
     }
 
