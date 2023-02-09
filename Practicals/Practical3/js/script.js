@@ -226,7 +226,7 @@ function showData() {
             <button type="button" onclick="deleteData(${index})" class="btn btn-danger">
           Delete
         </button>
-        <button type="button" onclick="edit(${index})" class="btn btn-info">
+        <button type="button" onclick="edit(${index})" class="btn btn-warning">
           Edit
         </button>
           </div>

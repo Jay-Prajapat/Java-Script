@@ -14,32 +14,34 @@
 
 <body>
   <div class="container">
-    <h2>Product Management System</h2>
+    <div class="text-center">
+      <h1><strong>Product Management System</strong></h1>
+    </div>
     <form>
       <div class="form-group">
-        <label for="prodId">Product ID:</label>
+        <label for="prodId" class="label-name">Product ID:</label>
         <input type="text" class="form-control" id="prodId" required maxlength="8" minlength="8" pattern="[0-9]*" />
         <label for="Id" id="pId" class="error"></label>
       </div>
       <div class="form-group">
-        <label for="name">Name:</label>
+        <label for="name" class="label-name">Name:</label>
         <input type="text" class="form-control" id="name"required maxlength="20"/>
         <label for="pName" id="pName" class="error"></label>
       </div>
       <div class="form-group">
-        <label for="image">Image:</label>
+        <label for="image" class="label-name">Image:</label>
         <input type="file" class="form-control" id="image" />
       </div>
       <div class="form-group">
-        <label for="price">Price:</label>
+        <label for="price" class="label-name">Price:</label>
         <input type="number" class="form-control" id="price" required/>
         <label for="pPrice" id="pPrice"  class="error"></label>
       </div>
       <div class="form-group">
-        <label for="description">Description:</label>
+        <label for="description" class="label-name">Description:</label>
         <textarea class="form-control" rows="5" id="description" maxlength="60"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary" id="add" onclick="onSubmit()">
+      <button type="submit" class="btn btn-success" id="add" onclick="onSubmit()">
         Add
       </button>
       <button type="button" class="btn btn-success" id="update" >
