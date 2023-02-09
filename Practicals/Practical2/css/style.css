@@ -55,14 +55,16 @@ p {
   background-color: #f2f5f7;
 }
 .address {
-  padding-left: 5%;
+
 }
 .inner-contect {
   color: #d94948;
+  
 }
 .follow-us {
-  padding-left: 5%;
   margin-top: 20px;
+  margin-bottom: 40px;
+
 }
 .follow-us span {
   padding-right: 10px;
