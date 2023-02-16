@@ -26,48 +26,45 @@ function onSubmit() {
   }
 }
 
+function changeStyle(idName1, idName2) {
+  document.getElementById(idName1).style.display = "block";
+  document.getElementById(idName2).style.border = "solid red";
+}
+
 function validateData() {
   let name = document.getElementById("name").value;
   let price = document.getElementById("price").value;
   let id = document.getElementById("prodId").value;
   let str = document.getElementById("prodId").value;
   let len = str.length;
-  
+
   if (id == "") {
-    document.getElementById("pId").style.display = "block";
+    changeStyle("pId", "prodId");
     document.getElementById("pId").innerHTML = "Product Id is required !!";
-    document.getElementById("prodId").style.border = "solid red";
     return false;
   }
   if (len != 8) {
-    document.getElementById("pId").style.display = "block";
+    changeStyle("pId", "prodId");
     document.getElementById("pId").innerHTML =
       "Product Id is exactly 8 character.";
-    document.getElementById("prodId").style.border = "solid red";
     return false;
   }
   if (isNaN(str)) {
-    document.getElementById("pId").style.display = "block";
+    changeStyle("pId", "prodId");
     document.getElementById("pId").innerHTML =
       "Product Id should contain only number.";
-    document.getElementById("prodId").style.border = "solid red";
     return false;
   }
- 
 
   if (name == "") {
-    document.getElementById("pName").style.display = "block";
+    changeStyle("pName", "name");
     document.getElementById("pName").innerHTML = "Product name is required !!";
-    document.getElementById("name").style.border = "solid red";
-
     return false;
   }
   if (price == "") {
-    document.getElementById("pPrice").style.display = "block";
+    changeStyle("pPrice", "price");
     document.getElementById("pPrice").innerHTML =
       "Product price is required !!";
-    document.getElementById("price").style.border = "solid red";
-
     return false;
   }
 
