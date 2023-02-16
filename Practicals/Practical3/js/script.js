@@ -36,6 +36,7 @@ function validateData() {
   let price = document.getElementById("price").value;
   let id = document.getElementById("prodId").value;
   let str = document.getElementById("prodId").value;
+  let img = document.getElementById("image").files[0];
   let len = str.length;
 
   if (id == "") {
@@ -59,6 +60,12 @@ function validateData() {
   if (name == "") {
     changeStyle("pName", "name");
     document.getElementById("pName").innerHTML = "Product name is required !!";
+    return false;
+  }
+  if(img == undefined){
+    console.log("skjuhsd");
+    changeStyle("pImage","image");
+    document.getElementById("pImage").innerHTML = "Product Image is required !!";
     return false;
   }
   if (price == "") {
