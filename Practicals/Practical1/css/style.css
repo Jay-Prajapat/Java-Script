@@ -23,11 +23,15 @@ body {
   background-color: rgb(220, 220, 220);
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  display: none;
+}
+
 .screen {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  align-items: flex-end;
   padding: 10px;
   overflow: hidden;
   height: 100px;
@@ -41,12 +45,20 @@ body {
   color: black;
   font-weight: bold;
   font-size: xx-large;
+  align-items: right;
+  text-align: right;
+  background-color: rgb(220, 220, 220);
+  border: none;
 }
 
 .previous {
   color: rgb(31, 30, 30);
   font-size: large;
   opacity: 0.9;
+  background-color: rgb(220, 220, 220);
+  border: none;
+  align-items: right;
+  text-align: right;
 }
 
 .row-memory-functions {
@@ -73,11 +85,11 @@ body {
 .col {
   margin: 2px;
 }
-.dropdown-toggle img{
+.dropdown-toggle img {
   height: 20px;
 }
-.dropdown-toggle span{
-  font-weight: normal
+.dropdown-toggle span {
+  font-weight: normal;
 }
 button {
   height: 40px;

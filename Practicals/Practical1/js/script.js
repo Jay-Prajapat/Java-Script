@@ -1,16 +1,24 @@
 let memory = [];
 
-var screen = document.querySelector(".current");
-var ans = document.querySelector(".previous");
-var btn = document.querySelectorAll(".numbtn");
-var opr = document.querySelectorAll(".operator");
+var screen = document.querySelector("#numbtn");
+var ans = document.querySelector("#previous-screen");
+var btn = document.querySelectorAll("#numbtn");
+var opr = document.querySelectorAll("#operator");
+
+$("document").ready(() => {
+  $("#numbtn").focus();
+
+  $(":button").on("click", () => {
+    $("#numbtn").focus();
+  });
+}); 
 
 for (item of btn) {
   item.addEventListener("click", (e) => {
     btnText = e.target.innerText;
 
-    if (!(btnText == "." && screen.innerHTML.includes("."))) {
-      screen.innerHTML += btnText;
+    if (!(btnText == "." && screen.value.includes("."))) {
+      screen.value += btnText;
     }
   });
 }
@@ -19,16 +27,16 @@ for (item of opr) {
     oprText = e.target.innerText;
     if (oprText == "x") {
       oprText = "*";
-    }
-    else if (oprText == "÷") {
+    } else if (oprText == "÷") {
       oprText = "/";
-    }
-    else if (oprText == "mod") {
+    } else if (oprText == "mod") {
       oprText = "%";
+    } else if (oprText == "xy") {
+      oprText = "^";
     }
 
-    ans.innerHTML += screen.innerHTML;
-    const operators = ["+", "-", "*", "/", ".", "%"];
+    ans.innerHTML += screen.value;
+    const operators = ["+", "-", "*", "/", ".", "%", "^"];
     let lastCharacter = ans.innerHTML[ans.innerHTML.length - 1];
 
     if (operators.includes(lastCharacter)) {
@@ -37,13 +45,21 @@ for (item of opr) {
       ans.innerHTML += oprText;
     }
 
-    screen.innerHTML = "";
+    screen.value = "";
   });
 }
 
+var inputBox = document.getElementById("numbtn");
+var invalidChars = ["-", "+", "E", "e"];
+inputBox.addEventListener("keydown", function (e) {
+  if (invalidChars.includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
 function compute() {
   if (ans.innerHTML.includes("logxy")) {
-    ans.innerHTML += screen.innerHTML;
+    ans.innerHTML += screen.value;
     let num1 = ans.innerHTML.substring(0, ans.innerHTML.indexOf("l"));
     let num2 = ans.innerHTML.substring(
       ans.innerHTML.indexOf("y") + 1,
@@ -51,10 +67,10 @@ function compute() {
     );
     let number = parseFloat(num1);
     let base = parseFloat(num2);
-    ans.innerHTML = Math.log10(number) / Math.log10(base);
-    screen.innerHTML = "";
+    updatePreviousScreen(Math.log10(number) / Math.log10(base));
+    updateCurrentScreen("");
   } else if (ans.innerHTML.includes("yroot")) {
-    ans.innerHTML += screen.innerHTML;
+    ans.innerHTML += screen.value;
     let num1 = ans.innerHTML.substring(0, ans.innerHTML.indexOf("y"));
     let num2 = ans.innerHTML.substring(
       ans.innerHTML.indexOf("t") + 1,
@@ -63,75 +79,78 @@ function compute() {
 
     let x = parseFloat(num1);
     let y = parseFloat(num2);
-    ans.innerHTML = Math.pow(x, 1 / y);
-    screen.innerHTML = "";
+    updatePreviousScreen(Math.pow(x, 1 / y));
+    updateCurrentScreen("");
   } else if (ans.innerHTML.includes("^")) {
-    ans.innerHTML += screen.innerHTML;
+    ans.innerHTML += screen.value;
     let num1 = ans.innerHTML.substring(0, ans.innerHTML.indexOf("^"));
     let num2 = ans.innerHTML.substring(
       ans.innerHTML.indexOf("^") + 1,
       ans.innerHTML.length + 1
     );
-    ans.innerHTML = Math.pow(num1, num2);
-    screen.innerHTML = "";
+    updatePreviousScreen(Math.pow(num1, num2));
+    updateCurrentScreen("");
   } else {
-    ans.innerHTML += screen.innerHTML;
-    ans.innerHTML = eval(ans.innerHTML);
-    screen.innerHTML = "";
+    ans.innerHTML += screen.value;
+    updatePreviousScreen(eval(ans.innerHTML));
+    updateCurrentScreen("");
   }
 }
 
+function updateCurrentScreen(value) {
+  screen.value = value;
+}
+
+function updatePreviousScreen(value) {
+  ans.innerHTML = value;
+}
+
 function deleteChar() {
-  screen.innerHTML = screen.innerHTML.toString().slice(0, -1);
+  updateCurrentScreen(screen.value.toString().slice(0, -1));
 }
 
 function clearAll() {
-  screen.innerHTML = "";
-  ans.innerHTML = "";
+  updateCurrentScreen("");
+  updatePreviousScreen("");
 }
 
 function negate() {
-  screen.innerHTML *= -1;
-}
-
-function pow() {
-  ans.innerHTML += screen.innerHTML + "^";
-  screen.innerHTML = "";
+  screen.value *= -1;
 }
 
 function sqrt() {
-  screen.innerHTML = Math.sqrt(screen.innerHTML);
+  updateCurrentScreen(Math.sqrt(screen.value));
 }
 
 function factorial() {
   let i, num, f;
   f = 1;
-  num = screen.innerHTML;
+  num = screen.value;
   for (i = 1; i <= num; i++) {
     f *= i;
   }
   i = i - 1;
-  screen.innerHTML = f;
+  updateCurrentScreen(f);
 }
 
 function tenRestToX() {
-  screen.innerHTML = Math.pow(10, screen.innerHTML);
+  updateCurrentScreen(Math.pow(10, screen.value));
 }
 
 function log() {
-  screen.innerHTML = Math.log10(screen.innerHTML);
+  updateCurrentScreen(Math.log10(screen.value));
 }
 
 function naturalLOG() {
-  screen.innerHTML = Math.log10(screen.innerHTML) * 2.303;
+  updateCurrentScreen(Math.log10(screen.value) * 2.303);
 }
 
 function square() {
-  screen.innerHTML = Math.pow(screen.innerHTML, 2);
+  updateCurrentScreen(Math.pow(screen.value, 2));
 }
 
 function divideByOne() {
-  screen.innerHTML = 1 / screen.innerHTML;
+  updateCurrentScreen(1 / screen.value);
 }
 
 function absolute() {
@@ -139,133 +158,132 @@ function absolute() {
 }
 
 function exponential() {
-  screen.innerHTML = screen.innerHTML * Math.pow(10, screen.innerHTML);
+  updateCurrentScreen(screen.value * Math.pow(10, screen.value));
 }
 
 function pi() {
-  screen.innerHTML = Math.PI;
+  updateCurrentScreen(Math.PI);
 }
 
 function EulersNumber() {
-  screen.innerHTML = Math.exp(1);
+  updateCurrentScreen(Math.exp(1));
 }
 
 function cube() {
-  screen.innerHTML = Math.pow(screen.innerHTML, 3);
+  updateCurrentScreen(Math.pow(screen.value, 3));
 }
 
 function cubeRoot() {
-  screen.innerHTML = Math.cbrt(screen.innerHTML);
+  updateCurrentScreen(Math.cbrt(screen.value));
 }
 
 function twoRx() {
-  screen.innerHTML = Math.pow(2, screen.innerHTML);
+  updateCurrentScreen(Math.pow(2, screen.value));
 }
 
 function yTHroot() {
-  ans.innerHTML += screen.innerHTML + "yroot";
-  screen.innerHTML = "";
+  ans.innerHTML += screen.value + "yroot";
+  updateCurrentScreen("");
 }
 
 function logxy() {
-  ans.innerHTML = screen.innerHTML + "logxy";
-  screen.innerHTML = "";
+  ans.innerHTML = screen.value + "logxy";
+  updateCurrentScreen("");
 }
 
 function eRestToX() {
-  screen.innerHTML = Math.exp(screen.innerHTML);
+  updateCurrentScreen(Math.exp(screen.value));
 }
 
 function sin() {
-  screen.innerHTML = Math.sin((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(Math.sin((screen.value * Math.PI) / 180));
 }
 
 function cos() {
-  screen.innerHTML = Math.cos((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(Math.cos((screen.value * Math.PI) / 180));
 }
 
 function tan() {
-  screen.innerHTML = Math.tan((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(Math.tan((screen.value * Math.PI) / 180));
 }
 
 function sec() {
-  screen.innerHTML = 1 / Math.cos((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(1 / Math.cos((screen.value * Math.PI) / 180));
 }
 
 function csc() {
-  screen.innerHTML = 1 / Math.sin((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(1 / Math.sin((screen.value * Math.PI) / 180));
 }
 
 function cot() {
-  screen.innerHTML = 1 / Math.tan((screen.innerHTML * Math.PI) / 180);
+  updateCurrentScreen(1 / Math.tan((screen.value * Math.PI) / 180));
 }
 
 function floor() {
-  screen.innerHTML = Math.floor(screen.innerHTML);
+  updateCurrentScreen(Math.floor(screen.value));
 }
 
 function ceil() {
-  screen.innerHTML = Math.ceil(screen.innerHTML);
+  updateCurrentScreen(Math.ceil(screen.value));
 }
 
 function random() {
-  screen.innerHTML = Math.random();
+  updateCurrentScreen(Math.random());
 }
 
 function fe() {
-  let length = screen.innerHTML.length;
-  screen.innerHTML =
-    parseFloat(screen.innerHTML) / Math.pow(10, length - 1).toString() +
+  let length = screen.value.length;
+  screen.value =
+    parseFloat(screen.value) / Math.pow(10, length - 1).toString() +
     ".e+" +
     `${length - 1}`;
 }
 
 function memoryAdd() {
   if (memory.length == 0) {
-    if (screen.innerHTML != "") {
-      memory.push(parseFloat(screen.innerHTML));
+    if (screen.value != "") {
+      memory.push(parseFloat(screen.value));
     } else if (ans.innerHTML != "") {
       memory.push(parseFloat(ans.innerHTML));
     } else memory.push(0);
   } else {
-    if (screen.innerHTML != "") {
+    if (screen.value != "") {
       memory[memory.length - 1] =
-        parseFloat(screen.innerHTML) + parseFloat(memory[memory.length - 1]);
+        parseFloat(screen.value) + parseFloat(memory[memory.length - 1]);
     } else if (ans.innerHTML != "") {
       memory[memory.length - 1] =
         parseFloat(memory[memory.length - 1]) + parseFloat(ans.innerHTML);
     } else return;
   }
-  screen.innerHTML = "";
+  screen.value = "";
 }
 
 function memoryMinus() {
   if (memory.length == 0) {
-    if (screen.innerHTML != "") {
-      memory.push(parseFloat(screen.innerHTML * -1));
+    if (screen.value != "") {
+      memory.push(parseFloat(screen.value * -1));
     } else if (ans.innerHTML != "") {
       memory.push(parseFloat(ans.innerHTML * -1));
     } else memory.push(0);
   } else {
-    if (screen.innerHTML != "") {
+    if (screen.value != "") {
       memory[memory.length - 1] =
-        parseFloat(memory[memory.length - 1]) - parseFloat(screen.innerHTML);
+        parseFloat(memory[memory.length - 1]) - parseFloat(screen.value);
     } else if (ans.innerHTML != "") {
       memory[memory.length - 1] =
         parseFloat(memory[memory.length - 1]) - parseFloat(ans.innerHTML);
     } else return;
   }
-  screen.innerHTML = "";
+  screen.value = "";
 }
 
 function memoryStore() {
-  memory.push(parseFloat(screen.innerHTML));
-
-  screen.innerHTML = "";
+  memory.push(parseFloat(screen.value));
+  updateCurrentScreen("");
 }
 
 function memoryRead() {
-  screen.innerHTML = memory[memory.length - 1];
+  screen.value = memory[memory.length - 1];
 }
 
 function memoryClear() {
@@ -291,10 +309,10 @@ function changeFunction() {
     ).innerHTML = `<button onclick="twoRx()">2<sup>x</sup></button>`;
     document.getElementById(
       "log"
-    ).innerHTML = `<button class="operator" onclick="logxy()" data-operation>log<sub>y</sub>x</button>`;
+    ).innerHTML = `<button id="operator" onclick="logxy()" >log<sub>y</sub>x</button>`;
     document.getElementById(
       "ln"
-    ).innerHTML = `<button onclick="eRestToX()" data-operation>e<sup>x</sup></button>`;
+    ).innerHTML = `<button onclick="eRestToX()" >e<sup>x</sup></button>`;
     flag = false;
   } else {
     document.getElementById("second").style =
@@ -304,10 +322,10 @@ function changeFunction() {
     ).innerHTML = `<button id="square" onclick="square()">x<sup>2</sup></button>`;
     document.getElementById(
       "sqrt"
-    ).innerHTML = `<button id="sqrt" data-operation onclick="sqrt()"><i class="fa-solid fa-square-root-variable"></i></button>`;
+    ).innerHTML = `<button id="sqrt"  onclick="sqrt()"><i class="fa-solid fa-square-root-variable"></i></button>`;
     document.getElementById(
       "xPowy"
-    ).innerHTML = `<button id="xPowy" onclick="pow()">x<sup>y</sup></button> `;
+    ).innerHTML = `<button id="operator">x<sup>y</sup></button> `;
     document.getElementById(
       "tenPowX"
     ).innerHTML = `<button id="tenPowX" onclick="tenRestToX()">10<sup>x</sup></button>`;

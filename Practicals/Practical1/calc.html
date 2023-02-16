@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Scientific Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -31,8 +32,8 @@
   <body>
     <div class="calculator">
       <div class="screen">
-        <div class="previous"></div>
-        <div class="current" aria-placeholder="0"></div>
+        <div class="previous" id="previous-screen"></div>
+        <input type="number" class="current"  id="numbtn"  placeholder="0"> 
       </div>
       <div class="container">
         <div class="row-memory-functions">
@@ -77,7 +78,7 @@
               </button>
               <ul class="dropdown-menu">
                 <ul>
-                  <button onclick="sin()" data-operation>sin</button>
+                  <button onclick="sin()" >sin</button>
                   <button onclick="cos()">cos</button>
                   <button onclick="tan()">tan</button>
                 </ul>
@@ -111,8 +112,8 @@
                 </ul>
                 <ul>
                   <button onclick="random()">rand</button>
-                  <button data-operation>→dms</button>
-                  <button data-operation>←deg</button>
+                  <button >→dms</button>
+                  <button >←deg</button>
                 </ul>
               </ul>
             </div>
@@ -130,10 +131,10 @@
           <button onclick="EulersNumber()">e</button>
         </div>
         <div class="col">
-          <button data-all-clear onclick="clearAll()">C</button>
+          <button  onclick="clearAll()">C</button>
         </div>
         <div class="col">
-          <button data-delete onclick="deleteChar()">
+          <button  onclick="deleteChar()">
             <i class="fa-solid fa-delete-left"></i>
           </button>
         </div>
@@ -152,43 +153,43 @@
           <button onclick="exponential()">exp</button>
         </div>
         <div class="col">
-          <button class="operator">mod</button>
+          <button id="operator">mod</button>
         </div>
       </div>
       <div class="row1">
         <div class="col" id="sqrt">
-          <button data-operation onclick="sqrt()">
+          <button  onclick="sqrt()">
             <i class="fa-solid fa-square-root-variable"></i>
           </button>
         </div>
         <div class="col">
-          <button class="numbtn">(</button>
+          <button id="numbtn" id="">(</button>
         </div>
         <div class="col">
-          <button class="numbtn">)</button>
+          <button id="numbtn">)</button>
         </div>
         <div class="col">
-          <button data-operation onclick="factorial()">n!</button>
+          <button  onclick="factorial()">n!</button>
         </div>
         <div class="col">
-          <button data-operation class="operator">÷</button>
+          <button  id="operator">÷</button>
         </div>
       </div>
       <div class="row1">
         <div class="col" id="xPowy">
-          <button onclick="pow()">x<sup>y</sup></button>
+          <button id="operator">x<sup>y</sup></button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>7</button>
+          <button class="number" id="numbtn" >7</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>8</button>
+          <button class="number" id="numbtn" >8</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>9</button>
+          <button class="number" id="numbtn" >9</button>
         </div>
         <div class="col">
-          <button data-operation class="operator">x</button>
+          <button  id="operator">x</button>
         </div>
       </div>
       <div class="row1">
@@ -196,16 +197,16 @@
           <button onclick="tenRestToX()">10<sup>x</sup></button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>4</button>
+          <button class="number" id="numbtn" >4</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>5</button>
+          <button class="number" id="numbtn" >5</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>6</button>
+          <button class="number" id="numbtn" >6</button>
         </div>
         <div class="col">
-          <button data-operation class="operator">-</button>
+          <button  id="operator">-</button>
         </div>
       </div>
       <div class="row1">
@@ -213,16 +214,16 @@
           <button onclick="log()">log</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>1</button>
+          <button class="number" id="numbtn" >1</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>2</button>
+          <button class="number" id="numbtn" >2</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>3</button>
+          <button class="number" id="numbtn" >3</button>
         </div>
         <div class="col">
-          <button data-operation class="operator">+</button>
+          <button  id="operator">+</button>
         </div>
       </div>
       <div class="row1">
@@ -233,13 +234,13 @@
           <button class="number" onclick="negate()"><sup>+</sup>/-</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>0</button>
+          <button class="number" id="numbtn" >0</button>
         </div>
         <div class="col">
-          <button class="number numbtn" data-number>.</button>
+          <button class="number" id="numbtn" >.</button>
         </div>
         <div class="col">
-          <button data-equals class="equal" id="eval" onclick="compute()">
+          <button  class="equal" id="eval" onclick="compute()">
             <i class="fa-regular fa-equals"></i>
           </button>
         </div>
